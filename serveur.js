@@ -7,18 +7,6 @@ app.get('/add/:a/:b', (req, res) => {
   res.json({ result: a + b });
 });
 
-app.get('/sub/:a/:b', (req, res) => {
-  const a = Number(req.params.a);
-  const b = Number(req.params.b);
-  res.json({ result: a - b });
-});
-
-app.get('/mul/:a/:b', (req, res) => {
-  const a = Number(req.params.a);
-  const b = Number(req.params.b);
-  res.json({ result: a * b });
-});
-
 app.get('/divide/:a/:b', (req, res) => {
   const a = Number(req.params.a);
   const b = Number(req.params.b);
@@ -30,8 +18,10 @@ app.get('/divide/:a/:b', (req, res) => {
   res.json({ result: a / b });
 });
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
+if (require.main === module) {
+  app.listen(3000, () => {
+    console.log('Server running on port 3000');
+  });
+}
 
 module.exports = app;

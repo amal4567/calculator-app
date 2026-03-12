@@ -2,14 +2,13 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'NodeJS'
+        nodejs 'Node'
     }
 
     stages {
-
         stage('Clone') {
             steps {
-                git 'https://github.com/amal4567/calculator-app.git'
+                git branch: 'main', url: 'https://github.com/amal4567/calculator-app.git'
             }
         }
 
@@ -29,6 +28,12 @@ pipeline {
             steps {
                 bat 'echo Build success'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Bravo, déploiement réussi !'
         }
     }
 }

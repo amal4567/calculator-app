@@ -2,19 +2,32 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node'
+        nodejs 'NodeJS'
     }
 
     stages {
-        stage('Install dependencies') {
+
+        stage('Clone') {
+            steps {
+                git 'https://github.com/amal4567/calculator-app.git'
+            }
+        }
+
+        stage('Install') {
             steps {
                 bat 'npm install'
             }
         }
 
-        stage('Start app') {
+        stage('Test') {
             steps {
-                bat 'node serveur.js'
+                bat 'npm test'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'echo Build success'
             }
         }
     }
